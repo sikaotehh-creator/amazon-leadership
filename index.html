@@ -156,4 +156,204 @@
     <div class="progress" id="progress-text">1 / 16</div>
 </div>
 
-<script
+<script>
+    // --- 亚马逊 16 条领导力原则 (中英双语版) ---
+    const slides = [
+        {
+            tag: "Principle 1",
+            title: "Customer Obsession<br>顾客至尚",
+            html: `
+                <p class="cn-text">领导者从客户入手，然后反向推动工作。他们努力工作以赢得和维系客户的信任。虽然领导者会关注竞争对手，但他们更关注客户。</p>
+                <div class="divider"></div>
+                <p class="en-text">Leaders start with the customer and work backwards. They work vigorously to earn and keep customer trust. Although leaders pay attention to competitors, they obsess over customers.</p>
+            `
+        },
+        {
+            tag: "Principle 2",
+            title: "Ownership<br>主人翁精神",
+            html: `
+                <p class="cn-text">领导者是主人翁。他们会从长远考虑，不会为了短期业绩而牺牲长期价值。他们代表整个公司行事，而不仅仅是代表自己的团队。他们绝不会说“那不是我的工作”。</p>
+                <div class="divider"></div>
+                <p class="en-text">Leaders are owners. They think long term and don't sacrifice long-term value for short-term results. They act on behalf of the entire company, beyond just their own team. They never say "that's not my job."</p>
+            `
+        },
+        {
+            tag: "Principle 3",
+            title: "Invent and Simplify<br>创新简化",
+            html: `
+                <p class="cn-text">领导者期望并要求自己的团队进行创新和发明，并始终寻求使工作简化的方法。他们了解外界动态，从四面八方寻找新的灵感，并不受限于“非我发明”的观念。</p>
+                <div class="divider"></div>
+                <p class="en-text">Leaders expect and require innovation and invention from their teams and always find ways to simplify. They are externally aware, look for new ideas from everywhere, and are not limited by "not invented here."</p>
+            `
+        },
+        {
+            tag: "Principle 4",
+            title: "Are Right, A Lot<br>决策正确",
+            html: `
+                <p class="cn-text">领导者在大多数情况下都能做出正确的决定。他们拥有卓越的业务判断能力和敏锐的直觉。他们寻求多样的视角，并挑战自己的观念。</p>
+                <div class="divider"></div>
+                <p class="en-text">Leaders are right a lot. They have strong judgment and good instincts. They seek diverse perspectives and work to disconfirm their beliefs.</p>
+            `
+        },
+        {
+            tag: "Principle 5",
+            title: "Learn and Be Curious<br>好奇求知",
+            html: `
+                <p class="cn-text">领导者从不停止学习，并时刻寻找提升自己的机会。他们对新的可能性充满好奇并付诸探索。</p>
+                <div class="divider"></div>
+                <p class="en-text">Leaders are never done learning and always seek to improve themselves. They are curious about new possibilities and act to explore them.</p>
+            `
+        },
+        {
+            tag: "Principle 6",
+            title: "Hire and Develop the Best<br>选贤育能",
+            html: `
+                <p class="cn-text">领导者通过每一次招聘和晋升来提升团队的绩效水准。他们能够识别出杰出的人才，并乐于在组织中调动他们。领导者培养领导者，并严肃对待自己教导他人的职责。</p>
+                <div class="divider"></div>
+                <p class="en-text">Leaders raise the performance bar with every hire and promotion. They recognize exceptional talent, and willingly move them throughout the organization. Leaders develop leaders and take seriously their role in coaching others.</p>
+            `
+        },
+        {
+            tag: "Principle 7",
+            title: "Insist on the Highest Standards<br>最高标准",
+            html: `
+                <p class="cn-text">领导者拥有近乎严苛的高标准——许多人可能认为这些标准高得不可理喻。领导者不断提高标准，并激励团队交付高质量的产品、服务和流程。</p>
+                <div class="divider"></div>
+                <p class="en-text">Leaders have relentlessly high standards—many people may think these standards are unreasonably high. Leaders are continually raising the bar and drive their teams to deliver high quality products, services and processes.</p>
+            `
+        },
+        {
+            tag: "Principle 8",
+            title: "Think Big<br>远见卓识",
+            html: `
+                <p class="cn-text">局限于狭小的思维会成为自我实现的预言。领导者制定并阐明宏大的愿景，以此激发成果。他们另辟蹊径，从不同角度探寻服务客户的方法。</p>
+                <div class="divider"></div>
+                <p class="en-text">Thinking small is a self-fulfilling prophecy. Leaders create and communicate a bold direction that inspires results. They think differently and look around corners for ways to serve customers.</p>
+            `
+        },
+        {
+            tag: "Principle 9",
+            title: "Bias for Action<br>崇尚行动",
+            html: `
+                <p class="cn-text">速度在商业中至关重要。许多决策和行动是可以逆转的，不需要进行广泛的研究。我们提倡在深思熟虑前提下的冒险精神。</p>
+                <div class="divider"></div>
+                <p class="en-text">Speed matters in business. Many decisions and actions are reversible and do not need extensive study. We value calculated risk taking.</p>
+            `
+        },
+        {
+            tag: "Principle 10",
+            title: "Frugality<br>勤俭节约",
+            html: `
+                <p class="cn-text">力争以更少的投入实现更多的产出。因陋就简往往能催生机智、自给自足和发明创造。增加人力、预算规模或固定开支并不会为你加分。</p>
+                <div class="divider"></div>
+                <p class="en-text">Accomplish more with less. Constraints breed resourcefulness, self-sufficiency and invention. There are no extra points for growing headcount, budget size or fixed expense.</p>
+            `
+        },
+        {
+            tag: "Principle 11",
+            title: "Earn Trust<br>赢得信任",
+            html: `
+                <p class="cn-text">领导者专注倾听，坦诚沟通，并尊重他人。他们敢于自我批评，即便这样做会令自己尴尬或难堪。他们以最佳标准来衡量自己和团队。</p>
+                <div class="divider"></div>
+                <p class="en-text">Leaders listen attentively, speak candidly, and treat others respectfully. They are vocally self-critical, even when doing so is awkward or embarrassing. They benchmark themselves and their teams against the best.</p>
+            `
+        },
+        {
+            tag: "Principle 12",
+            title: "Dive Deep<br>刨根问底",
+            html: `
+                <p class="cn-text">领导者深入各个层级，掌控细节，经常进行审核，并且当指标和传闻不一致时持怀疑态度。没有任何工作是低人一等的。</p>
+                <div class="divider"></div>
+                <p class="en-text">Leaders operate at all levels, stay connected to the details, audit frequently, and are skeptical when metrics and anecdote differ. No task is beneath them.</p>
+            `
+        },
+        {
+            tag: "Principle 13",
+            title: "Have Backbone; Disagree and Commit<br>敢于谏言，服从大局",
+            html: `
+                <p class="cn-text">领导者有义务在持有异议时，尊重地挑战决策，即使这样做会让人不舒服或精疲力竭。一旦做出决定，他们就会全身心地致力于实现它。</p>
+                <div class="divider"></div>
+                <p class="en-text">Leaders are obligated to respectfully challenge decisions when they disagree, even when doing so is uncomfortable or exhausting. Once a decision is determined, they commit wholly.</p>
+            `
+        },
+        {
+            tag: "Principle 14",
+            title: "Deliver Results<br>达成业绩",
+            html: `
+                <p class="cn-text">领导者关注其业务的关键投入，并以正确的质量和及时的速度交付它们。尽管遭遇挫折，他们依然以此为机，永不气馁。</p>
+                <div class="divider"></div>
+                <p class="en-text">Leaders focus on the key inputs for their business and deliver them with the right quality and in a timely fashion. Despite setbacks, they rise to the occasion and never settle.</p>
+            `
+        },
+        {
+            tag: "Principle 15",
+            title: "Strive to be Earth's Best Employer<br>努力成为地球上最好的雇主",
+            html: `
+                <p class="cn-text">领导者每天都在努力创建一个更安全、更高效、绩效更高、更多样化和更公正的工作环境。他们富有同理心，在工作中享受乐趣，并让他人也以此为乐。</p>
+                <div class="divider"></div>
+                <p class="en-text">Leaders work every day to create a safer, more productive, higher performing, more diverse, and more just work environment. They lead with empathy, have fun at work, and make it easy for others to have fun.</p>
+            `
+        },
+        {
+            tag: "Principle 16",
+            title: "Success and Scale Bring Broad Responsibility<br>成功和规模带来广泛的责任",
+            html: `
+                <p class="cn-text">我们从车库起家，但现在早已不再那里了。我们必须谦卑并深思我们行动的后果。领导者创造的价值要多于他们消耗的，并总是让世界比他们发现时更美好。</p>
+                <div class="divider"></div>
+                <p class="en-text">We started in a garage, but we're not there anymore. We must be humble and thoughtful about even the secondary effects of our actions. Leaders create more than they consume and always leave things better than how they found them.</p>
+            `
+        }
+    ];
+
+    // --- 逻辑控制 ---
+    let currentIndex = 0;
+    const cardArea = document.getElementById('card-area');
+    const progressText = document.getElementById('progress-text');
+
+    function renderCard() {
+        const item = slides[currentIndex];
+        cardArea.style.opacity = 0;
+        cardArea.style.transform = "translateY(10px)"; 
+        
+        setTimeout(() => {
+            cardArea.innerHTML = `
+                <div class="badge">${item.tag}</div>
+                <h2>${item.title}</h2>
+                <div>${item.html}</div> 
+            `;
+            cardArea.style.opacity = 1;
+            cardArea.style.transform = "translateY(0)"; 
+            progressText.innerText = `${currentIndex + 1} / ${slides.length}`;
+        }, 200);
+    }
+
+    function nextCard() {
+        if (currentIndex < slides.length - 1) {
+            currentIndex++;
+        } else {
+            currentIndex = 0; 
+        }
+        renderCard();
+    }
+
+    function prevCard() {
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            currentIndex = slides.length - 1; 
+        }
+        renderCard();
+    }
+
+    // 键盘支持
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "ArrowRight") nextCard();
+        if (event.key === "ArrowLeft") prevCard();
+    });
+
+    renderCard();
+
+</script>
+
+</body>
+</html>
